@@ -1,17 +1,21 @@
+import json
+
 import azure.functions as func
-from fastapi import FastAPI
 
-fastapi_app = FastAPI(title="API de presentacion")
-
-
-@fastapi_app.get("/api/health")
-def health():
-    return {"status": "ok"}
+app = func.FunctionApp()
 
 
-@fastapi_app.get("/api/saludo")
-def saludo():
-    return {"mensaje": "Hola desde Azure Functions + FastAPI"}
+@app.route(route="health", methods=["GET"], auth_level=func.AuthLevel.ANONYMOUS)
+def health(req: func.HttpRequest) -> func.HttpResponse:
+    return func.HttpResponse(
+        json.dumps({"status": "ok"}),
+        mimetype="application/json",
+    )
 
 
-app = func.AsgiFunctionApp(app=fastapi_app, http_auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="saludo", methods=["GET"], auth_level=func.AuthLevel.ANONYMOUS)
+def saludo(req: func.HttpRequest) -> func.HttpResponse:
+    return func.HttpResponse(
+        json.dumps({"mensaje": "Hola desde Azure Functions"}),
+        mimetype="application/json",
+    )
