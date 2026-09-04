@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi Sitio{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <nav class="navbar">
         <span class="brand">German Cortes</span>
         <div class="links">
             <a href="/">Inicio</a>
-            <a href="/about">Sobre mi</a>
+            <a href="/about.html">Sobre mi</a>
         </div>
     </nav>
     <main>
-        {% block content %}{% endblock %}
+        <section class="hero">
+            <h1>Hola, soy German</h1>
+            <p>Este es mi sitio de presentacion, construido para practicar servicios de Azure.</p>
+        </section>
     </main>
     <footer>
         <p>Desplegado y evolucionado paso a paso en Azure.</p>
